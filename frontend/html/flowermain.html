@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/responsive2.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+    <title>FlowerMind - 당신만의 꽃다발</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <a href="/" class="logo">FlowerMind</a>
+        <!-- 데스크탑용 헤더 메뉴 -->
+        <div class="header-menu desktop-only">
+            <a href="/image" button class="start-button" id="start-button">
+              <div class="start-text">생성하기</div>
+            </a>
+          <i id="archive-icon" class="bi bi-archive-fill"></i></a>
+          <a href="#"><i class="bi bi-question-circle-fill"></i></a>
+          <a href="/login" class="login-text">로그인</a>
+        </div>
+
+        <!-- 타블렛/모바일용 햄버거 메뉴 -->
+        <div class="hamburger-menu tablet-only mobile-only" id="hamburger-btn">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line"></div>
+        </div>
+        
+        <!-- 슬라이드 메뉴 (모바일/태블릿) -->
+        <div class="slide-menu" id="slide-menu">
+          <div class="menu-items">
+            <div class="menu-item"><i class="bi bi-box-arrow-in-right"></i>&nbsp; 로그인</div>
+            <div class="menu-item"><i class="bi bi-person-plus-fill"></i>&nbsp; 회원가입</div>
+            <div class="menu-item"><i class="bi bi-plus-square"></i>&nbsp; 이미지 만들기</div>
+            <div class="menu-item"><i class="bi bi-archive-fill"></i>&nbsp;내 보관함</div>
+            <div class="menu-item"><i class="bi bi-flower1"></i>&nbsp;전체 보관함</div>
+            <div class="menu-item"><i class="bi bi-question-circle-fill"></i> &nbsp;서비스 설명</div>
+          </div>
+        </div>
+        <!-- 슬라이드 메뉴 오버레이 -->
+        <div class="menu-overlay" id="menu-overlay"></div>
+      </div>
+      
+      <!-- 오늘의 꽃말 섹션 -->
+      <div class="today-flower-section">
+        <div class="today-flower-container default-ui">
+            <div class="flower-info">
+                <div class="flower-name"></div>
+                <div class="flower-meaning"></div>
+                <div class="flower-description">
+            
+                </div>
+            </div>
+            <img class="setting-icon" src="" />
+        </div>
+
+         <!-- 특별 기념일 UI (기본은 숨김) -->
+        <div class="today-flower-container event-ui" style="display: none;">
+            <div class="flower-info">
+                <div class="event-title"></div>
+                <div class="event-flower-name"></div>
+                <div class="event-flower-meaning"></div>
+                <div class="event-flower-description"></div>
+            </div>
+            <img class="event-flower-image" src="" />
+        </div>
+
+        <div class="section-title">오늘의 꽃말</div>
+      </div>
+
+      <!-- BEST 3 섹션 -->
+      <div class="best-section">
+        <div class="best-header">
+          <div class="best-title">BEST 3</div>
+          <div class="best-subtitle">인기많은 꽃 조합 순위를 보고 참고 하세요.</div>
+        </div>
+
+        <div class="best-items">
+          <!-- 1위 아이템 -->
+          <div class="best-item">
+            <img class="best-image" src="" alt=""/>  <!-- 생성한 꽃 이미지 -->
+            <div class="best-description">
+              <span>
+                <br />
+                <span class="like-text">꽃 조합 좋아요</span>
+                <span class="rank-number">1</span>
+                <span class="rank-text">위<br /></span>
+                <br />
+                <span class="combination-text"> <!-- 사용한 꽃 정보 -->
+                <br />
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <!-- 2위 아이템 -->
+          <div class="best-item">
+            <img class="best-image" src="" alt=""/>
+            <div class="best-description">
+              <span>
+                <br />
+                <span class="like-text">꽃 조합 좋아요</span>
+                <span class="rank-number">2</span>
+                <span class="rank-text">위<br /></span>
+                <br />
+                <span class="combination-text">
+                <br />
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <!-- 3위 아이템 -->
+          <div class="best-item">
+            <img class="best-image" src="" alt=""/>
+            <div class="best-description">
+              <span>
+                <br />
+                <span class="like-text">꽃 조합 좋아요</span>
+                <span class="rank-number">3</span>
+                <span class="rank-text">위<br /></span>
+                <br />
+                <span class="combination-text">
+                <br />
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="more-images">
+          <div class="more-images-text">
+            더 많은<br />이미지 보기
+          </div>
+        </div>
+      </div>
+
+      <!-- AI 꽃다발 섹션 -->
+      <div class="ai-section" style="background: url(/assets/image/makalong.jpg) center; background-size: cover; background-repeat: no-repeat;">
+        <div class="flower-types">
+          <!-- 꽃바구니 섹션 -->
+          <div class="flower-type flower-basket">
+            <img class="flower-type-image" src="../assets/image/꽃바구니.jpg" />
+            <div class="flower-type-info">
+              <div class="flower-type-title">꽃 바구니</div>
+              <div class="flower-type-desc">
+                꽃바구니는 정성스럽고 풍성한 느낌이라 축하나 감사, 격식 있는 자리에
+                잘 어울립니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- 꽃다발 섹션 -->
+          <div class="flower-type flower-bouquet">
+            <img class="flower-type-image" src="../assets/image/꽃다발.jpg" />
+            <div class="flower-type-info">
+              <div class="flower-type-title">꽃 다발</div>
+              <div class="flower-type-desc">
+                꽃 다발은 감정 표현이나 특별한 순간에 주로 쓰여, 가볍게도,
+                진지하게도 건넬수 있습니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- 꽃화분 섹션 -->
+          <div class="flower-type flower-pot">
+            <img class="flower-type-image" src="../assets/image/꽃 화분.jpg" />
+            <div class="flower-type-info">
+              <div class="flower-type-title">꽃 화분</div>
+              <div class="flower-type-desc">
+                화분은 지속적인 응원이나 성장, 새로운 시작을 상징합니다.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-cta">
+          <div class="ai-title">당신만의 꽃다발을 AI로 완성해보세요!</div>
+          <button class="start-button" >
+            <div class="start-text" ><a href="/image">시작하기</a></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 푸터 섹션 -->
+      <div class="footer">
+        <div class="footer-logo">FlowerMind</div>
+        <div class="copyright">© 2025. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+    
+    <script src="../assets/js/menu.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/momomo.js"></script>
+    <script>
+    //오늘의 꽃말과 특별한 날의 꽃말 구별
+    document.addEventListener("DOMContentLoaded", () => {
+      //특별한 날 객체
+      const specialDays = {
+          "02-14": { 
+            name: "장미", 
+            meaning: "열정적인 사랑", 
+            imageurl: "https://capstone-mogumogu-s3.s3.ap-northeast-2.amazonaws.com/flower_images/Rose_red.jpg",
+            description: "2월 14일, 발렌타인데이의 꽃은 장미입니다. 사랑의 진심을 붉은 장미에 담아보세요.",
+            title: "발렌타인데이 추천 꽃" },
+          "03-14": { 
+            name: "백합", 
+            meaning: "순수한 사랑, 변함없는 사랑", 
+            imageurl: "https://capstone-mogumogu-s3.s3.ap-northeast-2.amazonaws.com/flower_images/Lily_white.jpg", 
+            description: "백합은 순수한 사랑, 변치 않는 마음, 고귀한 존경을 상징하며, 상대에게 품격 있는 감동을 선사합니다. 진심을 전하고 싶은 오늘, 말보다 더 깊이 마음을 전할 수 있는 백합으로 표현해보세요.",
+            title: "화이트데이 추천 꽃" },
+          "05-08": {
+            name: "카네이션", 
+            meaning: "존경과 감사", 
+            imageurl: "https://capstone-mogumogu-s3.s3.ap-northeast-2.amazonaws.com/flower_images/Carnation_red.jpg", 
+            description: "감사와 사랑의 마음을 전하는 가장 따뜻한 선택, 말로 다 표현할 수 없는 고마움과 사랑을 전하세요.",
+            title: "어버이날 추천 꽃" },
+          "05-15": { 
+            name: "백장미", 
+            meaning: "존경, 사랑", 
+            imageurl: "https://capstone-mogumogu-s3.s3.ap-northeast-2.amazonaws.com/flower_images/Rose_white.jpg", 
+            description: "백장미는 존경, 순수함, 그리고 감사의 진심을 상징하는 꽃으로, 오랜 시간 제자의 성장을 묵묵히 이끌어주신 선생님께 드리기에 가장 어울립니다.",
+            title: "스승의 날 추천 꽃" },
+          "12-25": { 
+            name: "포인세티아", 
+            meaning: "축복과 따뜻함", 
+            imageurl: "https://capstone-mogumogu-s3.s3.ap-northeast-2.amazonaws.com/flower_images/poinsettia.jpg", 
+            description: "포인세티아는 크리스마스 시즌을 대표하는 꽃으로, 그 붉고 푸른 잎에 행복, 감사, 축복의 마음을 담고 있습니다. 사랑하는 사람들과 함께하는 이 계절, 포인세티아 한 송이로 따뜻한 마음과 연말을 마무리하고 새해의 희망을 전해보세요.",
+            title: "크리스마스 추천 꽃" }
+      };
+
+      const today = new Date();
+      const month = String(today.getMonth() + 1).padStart(2, '0'); // 월 (0부터 시작 → +1)
+      const date = String(today.getDate()).padStart(2, '0');       // 일
+      const todayKey = `${month}-${date}`;                         // 'MM-DD' 형태로 조합
+
+      if (specialDays[todayKey]) {
+          // 특별 기념일일 경우
+          const flower = specialDays[todayKey];
+          document.querySelector('.default-ui').style.display = 'none'; // 닫음
+          document.querySelector('.event-ui').style.display = 'flex';   // 열어둠
+
+          document.querySelector('.event-title').textContent = flower.title;
+          document.querySelector('.event-flower-name').textContent = flower.name;
+          document.querySelector('.event-flower-meaning').textContent = flower.meaning;
+          document.querySelector('.event-flower-description').textContent = flower.description;
+          document.querySelector('.event-flower-image').src = flower.imageurl;
+      } else {
+          // 일반 꽃 데이터 로딩(특별한 날이 아닐 때)
+          fetch('/today-flower')
+          .then(response => response.json())
+          .then(data => {
+              document.querySelector('.flower-name').textContent = data.name;
+              document.querySelector('.flower-meaning').textContent = data.meaning;
+              document.querySelector('.flower-description').textContent = data.description;
+              document.querySelector('.setting-icon').src = data.representative_imageurl;
+          })
+          .catch(error => {
+              console.error('꽃 정보 로딩 실패:', error);
+              console.log(`오류: ${err}`);
+          });
+        }
+    });
+
+    // /top3에서 images 컬렉션의 이미지들 중에서 좋아요 수가 가장 많은 3개의 데이터를 가져와서 브라우저에 띄움.
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const response = await fetch("/top3");
+        if (!response.ok) throw new Error("Top3 이미지 요청 실패");
+
+        const top3Images = await response.json();
+
+        const bestItems = document.querySelectorAll(".best-item");
+
+        top3Images.forEach((item, index) => {
+          if (index >= bestItems.length) return;
+
+          const bestItem = bestItems[index];
+
+          // 이미지 넣기
+          const imgTag = bestItem.querySelector("img.best-image");
+          imgTag.src = item.imageUrl;
+          imgTag.alt = `Top ${index + 1} 이미지`;
+
+          // 꽃 조합 텍스트 넣기
+          const parts = item.flowerName.map((name, i) => {
+            const color = item.flowerColor[i] || "색상 없음";
+            return `${name}(${color})`;
+          });
+          const combination = `<span style="font-weight: bold; color: #ff4081;">조합</span>: ${parts.join(", ")}`;
+
+          // 기존 span.combination-text에 HTML 삽입
+          const combinationText = bestItem.querySelector(".combination-text");
+          combinationText.innerHTML = combination;
+
+        });
+      } catch (error) {
+        console.error("Top3 이미지 로딩 실패:", error);
+      }
+    });
+
+    </script>
+  </body>
+</html>

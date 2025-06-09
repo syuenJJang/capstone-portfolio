@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowerMind - 이미지 생성 완료</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/result.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <a href="/main" class="logo">FlowerMind</a>
+            
+            <!-- 햄버거 메뉴 (태블릿/모바일용) -->
+            <div class="hamburger-menu" id="hamburger-btn">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+            
+            <!-- 데스크탑 메뉴 -->
+            <div class="header-menu desktop-only">
+                <i id="archive-icon" class="bi bi-archive-fill"></i>
+                <a href="#"><i class="bi bi-question-circle-fill"></i></a>
+                <a href="/mypage" class="login-text">마이페이지</a>
+            </div>
+        </header>
+        
+        <!-- 슬라이드 메뉴 (태블릿/모바일용) -->
+        <div class="slide-menu" id="slide-menu">
+            <div class="menu-items">
+                <a href="/mypage" class="menu-item"><i class="bi bi-person-circle"></i>&nbsp; 마이페이지</a>
+                <a href="/image" class="menu-item"><i class="bi bi-plus-square"></i>&nbsp; AI 꽃다발 만들기</a>
+                <a href="/gallery" class="menu-item"><i class="bi bi-archive-fill"></i>&nbsp;내 보관함</a>
+                <a href="#" class="menu-item"><i class="bi bi-flower1"></i>&nbsp;전체 보관함</a>
+                <a href="#" class="menu-item"><i class="bi bi-question-circle-fill"></i>&nbsp; 서비스 설명</a>
+                <a href="/main" class="menu-item">로그아웃</a>
+            </div>
+        </div>
+        
+        <!-- 메뉴 오버레이 -->
+        <div class="menu-overlay" id="menu-overlay"></div>
+
+        <!-- 메인 콘텐츠 -->
+        <main class="result-section">
+            <div class="result-container" id="resultContainer">
+                <!-- JavaScript로 동적 생성됩니다 -->
+                <div class="loading">
+                    <p>결과를 불러오는 중...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- 푸터 -->
+        <footer class="footer">
+            <div class="footer-logo">FlowerMind</div>
+            <div class="copyright">© 2025. ALL RIGHTS RESERVED.</div>
+        </footer>
+    </div>
+
+    <script src="../assets/js/menu.js"></script>
+    <script src="../assets/js/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultContainer = document.getElementById('resultContainer');
+            
+            // sessionStorage에서 결과 데이터 가져오기
+            const resultDataStr = sessionStorage.getItem('generatedImageResult');
+            
+            if (!resultDataStr) {
+                resultContainer.innerHTML = `
+                    <div class="error">
+                        <h2>오류가 발생했습니다</h2>
+                        <p>생성된 이미지 데이터를 찾을 수 없습니다.</p>
+                        <a href="/image" class="btn btn-primary">다시 생성하기</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                const resultData = JSON.parse(resultDataStr);
+                console.log('결과 데이터:', resultData);
+                
+                // 꽃 정보 HTML 생성
+                let flowerInfoHtml = '';
+                if (resultData.flowerSets && resultData.flowerSets.length > 0) {
+                    flowerInfoHtml = `
+                        <div class="flower-info">
+                            <h3>사용된 꽃 정보</h3>
+                            ${resultData.flowerSets.map((set, index) => `
+                                <div class="flower-set">
+                                    <strong>세트 ${index + 1}:</strong> ${set.name} (${set.color}${set.season ? `, ${set.season}` : ''})
+                                </div>
+                            `).join('')}
+                            <div style="margin-top: 1rem;">
+                                <strong>구성 형태:</strong> ${resultData.backgroundType || ''}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // 결과 HTML 생성
+                resultContainer.innerHTML = `
+                    <div class="success-message">
+                        이미지가 생성되었습니다.<br>
+                        원하시는 결과가 나왔나요?
+                    </div>
+
+                    <!-- 생성된 이미지들 -->
+                    <div class="image-gallery">
+                        <div class="image-item">
+                            <img src="${resultData.image}" alt="생성된 꽃 이미지" class="generated-image" />
+                        </div>
+                    </div>
+
+                    ${flowerInfoHtml}
+
+                    <!-- 액션 버튼들 -->
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="downloadImage()">
+                            <i class="bi bi-download"></i>
+                            이미지 다운로드
+                        </button>
+                        <button class="btn btn-secondary" onclick="goToGallery()">
+                            <i class="bi bi-archive-fill"></i>
+                            보관함에 이동
+                        </button>
+                    </div>
+                    
+                    <!-- 추가 액션 -->
+                    <div class="additional-actions">
+                        <a href="/image" class="btn btn-outline">
+                            <i class="bi bi-arrow-clockwise"></i>
+                            다시 생성하기
+                        </a>
+                        <button class="btn btn-outline" onclick="shareImage()">
+                            <i class="bi bi-share"></i>
+                            공유하기
+                        </button>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('결과 데이터 파싱 오류:', error);
+                resultContainer.innerHTML = `
+                    <div class="error">
+                        <h2>오류가 발생했습니다</h2>
+                        <p>결과 데이터를 처리하는 중 오류가 발생했습니다.</p>
+                        <a href="/image" class="btn btn-primary">다시 생성하기</a>
+                    </div>
+                `;
+            }
+        });
+        
+        // 이미지 다운로드 함수
+        function downloadImage() {
+            const resultDataStr = sessionStorage.getItem('generatedImageResult');
+            if (!resultDataStr) return;
+            
+            try {
+                const resultData = JSON.parse(resultDataStr);
+                const link = document.createElement('a');
+                link.href = resultData.image;
+                link.download = `flower_bouquet_${new Date().getTime()}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (error) {
+                alert('다운로드 중 오류가 발생했습니다.');
+            }
+        }
+        
+        // 보관함에 저장 함수 (이미 저장됨을 알림)
+        async function goToGallery() {
+            try {
+                const response = await fetch('/check-login', {
+                    method: 'GET',
+                    credentials: 'include'  // 세션 쿠키 포함
+                });
+
+                const result = await response.json();
+
+                if (result.loggedIn) {
+                    window.location.href = '/gallery';
+                } else {
+                    alert('보관함은 로그인한 사용자만 이용할 수 있습니다.');
+                    window.location.href = '/login';
+                }
+
+            } catch (err) {
+                console.error('로그인 상태 확인 중 오류 발생:', err);
+                alert('서버 오류가 발생했습니다.');
+            }
+        }
+        
+        // 공유 함수
+        function shareImage() {
+            if (navigator.share) {
+                const resultDataStr = sessionStorage.getItem('generatedImageResult');
+                if (resultDataStr) {
+                    const resultData = JSON.parse(resultDataStr);
+                    navigator.share({
+                        title: 'FlowerMind로 생성한 꽃 이미지',
+                        text: '내가 만든 AI 꽃다발을 확인해보세요!',
+                        url: window.location.href
+                    });
+                }
+            } else {
+                // Web Share API를 지원하지 않는 경우
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('링크가 클립보드에 복사되었습니다!');
+                }).catch(() => {
+                    alert('공유 기능을 사용할 수 없습니다.');
+                });
+            }
+        }
+    </script>
+
+    <script src="/assets/js/menu.js"></script>
+    <script src="/assets/js/header.js"></script>
+</body>
+</html>

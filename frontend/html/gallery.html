@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowerMind - 내 갤러리</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/responsive2.css">
+    <link rel="stylesheet" href="../assets/css/gallery.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.12.1/font/bootstrap-icons.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        /* 좋아요 아이콘 스타일 */
+        .like-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
+        }
+        
+        .like-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .like-icon.liked {
+            color: #ff4757;
+        }
+        
+        /* 좋아요 개수 스타일 */
+        .like-count {
+            position: absolute;
+            top: 35px;
+            left: 10px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
+        
+        /* 작성자 정보 스타일 */
+        .author-info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 11px;
+            background: rgba(0,0,0,0.6);
+            padding: 2px 6px;
+            border-radius: 3px;
+            z-index: 10;
+        }
+        
+        /* 이미지가 없을 때 스타일 */
+        .no-images {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* 이미지 썸네일 개선 */
+        .image-thumb {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
+        
+        .image-thumb:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-thumb img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
+        /* 로딩 상태 */
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+        
+        /* 상세보기 모달 개선 */
+        .image-details {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .image-details p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .image-details strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+          <a href="/main" class="logo">FlowerMind</a>
+            
+            <!-- 햄버거 메뉴 (태블릿/모바일용) -->
+            <div class="hamburger-menu" id="hamburger-btn">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+            
+            <!-- 데스크탑 메뉴 -->
+            <div class="header-menu desktop-only">
+              <i id="archive-icon" class="bi bi-archive-fill"></i>
+              <a href="#"><i class="bi bi-question-circle-fill"></i></a>
+              <a href="/mypage" class="login-text">마이페이지</a>
+            </div>
+        </header>
+        
+        <!-- 슬라이드 메뉴 (태블릿/모바일용) -->
+        <div class="slide-menu" id="slide-menu">
+            <div class="menu-items">
+              <a href="/mypage" class="menu-item"><i class="bi bi-person-circle"></i>&nbsp; 마이페이지</a>
+              <a href="/image" class="menu-item"><i class="bi bi-plus-square"></i>&nbsp; 이미지 만들기</a>
+              <a href="/gallery" class="menu-item"><i class="bi bi-archive-fill"></i>&nbsp;내 보관함</a>
+              <a href="#" class="menu-item"><i class="bi bi-flower1"></i>&nbsp;전체 보관함</a>
+              <a href="#" class="menu-item"><i class="bi bi-question-circle-fill"></i>&nbsp; 서비스 설명</a>
+              <a href="/" class="menu-item">로그아웃</a>
+            </div>
+        </div>
+        
+        <!-- 메뉴 오버레이 -->
+        <div class="menu-overlay" id="menu-overlay"></div>
+        
+        <!-- 메인 콘텐츠 -->
+        <main class="gallery-container">
+          <section class="gallery-header">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="my-images">내 보관함</button>
+              <button class="tab-btn" data-tab="all-images">전체 보관함</button>
+              <button class="tab-btn" data-tab="liked-images">좋아요</button>
+            </div>
+            <p>당신이 저장한 꽃 이미지들을 확인해보세요.</p>
+          </section>
+
+          <!-- 필터 영역 -->
+          <form class="gallery-filter-form" style="display: flex; gap: 10px; padding: 10px 20px;">
+            <!-- 월별 필터 -->
+            <select id="filter-month">
+              <option value="전체 월">전체 월</option>
+              <option value="1월">1월</option>
+              <option value="2월">2월</option>
+              <option value="3월">3월</option>
+              <option value="4월">4월</option>
+              <option value="5월">5월</option>
+              <option value="6월">6월</option>
+              <option value="7월">7월</option>
+              <option value="8월">8월</option>
+              <option value="9월">9월</option>
+              <option value="10월">10월</option>
+              <option value="11월">11월</option>
+              <option value="12월">12월</option>
+            </select>
+
+            <!-- 색상 필터 -->
+            <select id="filter-color">
+              <option value="전체색깔">전체 색깔</option>
+              <option value="빨강">빨강</option>
+              <option value="주황">주황</option>
+              <option value="노랑">노랑</option>
+              <option value="초록">초록</option>
+              <option value="파랑">파랑</option>
+              <option value="보라">보라</option>
+              <option value="분홍">분홍</option>
+              <option value="하양">하양</option>
+              <option value="검정">검정</option>
+            </select>
+
+            <!-- 타입 필터 -->
+            <select id="filter-type">
+              <option value="전체타입">전체 타입</option>
+              <option value="꽃다발">꽃다발</option>
+              <option value="꽃바구니">꽃바구니</option>
+              <option value="꽃화분">꽃화분</option>
+              <option value="플라워박스">플라워박스</option>
+            </select>
+            <button type="submit">적용</button>
+          </form>
+          
+          <!-- 내 보관함 -->
+          <section class="image-grid tab-content" id="my-images">
+            <div class="loading">이미지를 불러오는 중...</div>
+          </section>
+
+          <!-- 전체 보관함 -->
+          <section class="image-grid tab-content hidden" id="all-images">
+            <div class="loading">이미지를 불러오는 중...</div>
+          </section>
+
+          <!-- 좋아요한 이미지 -->
+          <section class="image-grid tab-content hidden" id="liked-images">
+            <div class="loading">이미지를 불러오는 중...</div>
+          </section>
+      
+          <div class="pagination" style="display: none;">
+            <!-- 페이지네이션 버튼들이 동적으로 생성됩니다 -->
+          </div>
+        </main>
+
+        <!-- 삭제 확인 모달 -->
+        <div id="delete-modal" class="modal hidden">
+          <div class="modal-content">
+            <p>이미지를 삭제하시겠습니까?</p>
+            <div class="modal-buttons">
+              <button id="confirm-delete" class="yes-btn">예</button>
+              <button id="cancel-delete" class="no-btn">아니오</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 이미지 상세보기 모달 -->
+        <div id="image-viewer-modal" class="modal hidden">
+          <div class="modal-content">
+            <div class="viewer-body">
+              <button id="prev-image" class="nav-btn">‹</button>
+
+              <div class="image-container">
+                <img id="viewer-image" src="" alt="">
+                <div id="image-description" class="image-description">
+                  <!-- 이미지 정보가 동적으로 표시됩니다 -->
+                </div>
+              </div>
+
+              <button id="next-image" class="nav-btn">›</button>
+            </div>
+  
+            <div class="viewer-buttons">
+              <button id="viewer-download" class="viewer-btn">저장</button>
+              <button id="viewer-delete" class="viewer-btn">삭제</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 푸터 -->
+        <footer class="footer">
+            <div class="footer-logo">FlowerMind</div>
+            <div class="copyright">© 2025. ALL RIGHTS RESERVED.</div>
+        </footer>
+    </div>
+    
+    <script src="../assets/js/gallery.js"></script>
+    <script src="../assets/js/menu.js"></script>
+    <script src="../assets/js/header.js"></script>
+</body>
+</html>

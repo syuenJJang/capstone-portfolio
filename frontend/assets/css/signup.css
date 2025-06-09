@@ -1,0 +1,137 @@
+/* signup.css */
+/* 회원가입 페이지 전용 스타일 */
+
+/* 컨테이너를 최소 높이로 설정하여 푸터를 하단에 고정 */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 수직 중앙 정렬 */
+    padding: 2rem 0;
+    flex: 1; /* 내용이 적을 때도 화면을 채우기 위해 flex-grow 설정 */
+    min-height: 60vh; /* 최소 높이 설정으로 중앙 정렬 효과 강화 */
+}
+
+.signup-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.signup-form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.signup-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.input-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.signup-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.signup-button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+    background-color: #3367d6;
+}
+
+/* 푸터 섹션 */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto; /* 푸터를 항상 하단에 고정하는 추가 설정 */
+}
+
+/* 반응형 스타일 */
+@media screen and (max-width: 744px) {
+    .signup-form {
+        padding: 1.5rem;
+    }
+    
+    .signup-logo {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .signup-input {
+        padding: 0.7rem;
+    }
+    
+    .signup-button {
+        padding: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 393px) {
+    .signup-form {
+        padding: 1rem;
+    }
+    
+    .signup-logo {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .signup-input {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .signup-button {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .input-container {
+        margin-bottom: 1rem;
+    }
+}

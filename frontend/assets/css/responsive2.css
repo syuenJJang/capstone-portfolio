@@ -1,0 +1,576 @@
+/* responsive.css */
+/* 공통 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* 헤더 스타일 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.search-text, .login-text {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* 슬라이드 메뉴 스타일 */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.slide-menu.active {
+  right: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.close-line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  position: absolute;
+}
+
+.close-line:first-child {
+  transform: rotate(45deg);
+}
+
+.close-line:last-child {
+  transform: rotate(-45deg);
+}
+
+.menu-items {
+  padding-top: 60px;
+}
+
+.menu-item {
+  padding: 15px 25px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* 햄버거 메뉴 스타일 */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  z-index: 1001;
+}
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 5px 0;
+}
+/* 오늘의 꽃말 섹션 */
+.today-flower-section {
+  position: relative;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  margin-bottom: 2rem;
+}
+
+.today-flower-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flower-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.flower-meaning {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* .setting-icon {
+  width: 24px;
+  height: 24px;
+} */
+
+.section-title {
+  position: absolute;
+  top: -0.8rem;
+  left: 2rem;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* BEST 3 섹션 */
+.best-section {
+  padding: 2rem;
+  background-color: #fff;
+  margin-bottom: 2rem;
+}
+
+.best-header {
+  margin-bottom: 2rem;
+}
+
+.best-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.best-subtitle {
+  color: #666;
+}
+
+.best-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.best-item {
+  flex: 1;
+  min-width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.best-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.best-description {
+  padding: 1rem;
+}
+
+.like-text {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.rank-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff5722;
+  margin: 0 0.3rem;
+}
+
+.rank-text {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.combination-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.more-images {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.more-images-text {
+  cursor: pointer;
+  color: #4285f4;
+  font-weight: bold;
+}
+
+/* AI 꽃다발 섹션 */
+.ai-section {
+  position: relative;
+  padding: 3rem 2rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.flower-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.flower-type {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  color: #333;
+}
+
+.flower-type-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.flower-type-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.flower-type-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.ai-cta {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.ai-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.start-button {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.start-button:hover {
+  background-color: #e64a19;
+}
+
+/* 푸터 섹션 */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* 반응형 스타일 */
+/* 데스크탑 (745px 이상) */
+@media screen and (min-width: 745px) {
+  .desktop-only {
+    display: flex;
+  }
+  
+  .tablet-only,
+  .mobile-only {
+    display: none;
+  }
+  
+  /* 데스크탑 전용 스타일 */
+  .flower-types {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  .best-items {
+    flex-direction: row;
+  }
+  
+  .header {
+    padding: 1.5rem 2rem;
+  }
+  
+  .logo {
+    font-size: 2rem;
+  }
+  
+  .ai-section {
+    padding: 3rem 2rem;
+  }
+  
+  .flower-type {
+    flex-direction: row;
+  }
+}
+
+/* 타블렛 (394px - 744px) */
+@media screen and (min-width: 394px) and (max-width: 744px) {
+  .desktop-only,
+  .mobile-only {
+    display: none;
+  }
+  
+  .tablet-only {
+    display: block;
+  }
+  
+  /* 타블렛 전용 스타일 */
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+  }
+  
+  .best-items {
+    flex-direction: column;
+  }
+  
+  .best-item {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  
+  .flower-types {
+    flex-direction: column;
+  }
+  
+  .flower-type {
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .flower-type-image {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .ai-cta {
+    padding: 1.5rem;
+  }
+  
+  .today-flower-section {
+    padding: 1.5rem;
+  }
+  
+  .section-title {
+    left: 1.5rem;
+  }
+  
+  .ai-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* 모바일 (393px 이하) */
+@media screen and (max-width: 393px) {
+  .desktop-only,
+  .tablet-only {
+    display: none;
+  }
+  
+  .mobile-only {
+    display: block;
+  }
+  
+  /* 모바일 전용 스타일 */
+  .header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .hamburger-menu {
+    display: block;
+  }
+  
+  .flower-name {
+    font-size: 1.2rem;
+  }
+  
+  .flower-meaning {
+    font-size: 0.9rem;
+  }
+  
+  .section-title {
+    font-size: 0.9rem;
+    left: 1rem;
+  }
+  
+  .today-flower-section {
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .best-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .best-title {
+    font-size: 1.4rem;
+  }
+  
+  .best-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .best-items {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .best-item {
+    width: 100%;
+  }
+  
+  .best-image {
+    height: 150px;
+  }
+  
+  .ai-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .flower-types {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .flower-type {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.75rem;
+  }
+  
+  .flower-type-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+    margin-bottom: 0.75rem;
+  }
+  
+  .flower-type-title {
+    font-size: 1rem;
+  }
+  
+  .flower-type-desc {
+    font-size: 0.8rem;
+  }
+  
+  .ai-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .start-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footer-logo {
+    font-size: 1.2rem;
+  }
+  
+  .copyright {
+    font-size: 0.7rem;
+  }
+  
+  .more-images-text {
+    font-size: 0.9rem;
+  }
+}

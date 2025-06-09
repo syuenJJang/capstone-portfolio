@@ -1,0 +1,448 @@
+/* global.css */
+/* 공통 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration-line: none;
+  color: #333;
+}
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* 헤더 스타일 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.search-text, .login-text {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* 햄버거 메뉴 스타일 */
+.hamburger-menu {
+  display: none;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  position: relative;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: all 0.3s ease;
+}
+
+/* 햄버거 메뉴가 X 형태로 변환될 때의 스타일 */
+.hamburger-menu.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* 슬라이드 메뉴 스타일 */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* 왼쪽에서 시작 */
+  width: 250px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+  padding-top: 60px;
+}
+
+.slide-menu.active {
+  left: 0;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
+}
+
+/* 수정된 메뉴 항목 스타일 */
+.menu-items {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  padding: 0;
+  margin: 0;
+  list-style: none; /* 리스트 스타일 제거 */
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 15px 25px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  background-color: transparent;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none; /* 마지막 항목의 하단 선 제거 */
+}
+
+/* 오늘의 꽃말 섹션 */
+.today-flower-section {
+  position: relative;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  margin-bottom: 2rem;
+}
+
+.today-flower-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flower-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.flower-meaning {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.5;
+
+}
+
+.flower-description {
+  margin-top: 1rem; /* 간격 조절 */
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-left: 4px solid #90caf9;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.03);
+  max-width: 600px;
+  flex-grow: 1;
+}
+
+.setting-icon {
+  width: 150px ;
+  height: 150px ;
+}
+
+.section-title {
+  position: absolute;
+  top: -0.8rem;
+  left: 2rem;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 오늘의 꽃말 특별한 날 섹션 */
+.event-ui {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff0f4;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  gap: 2rem; /* 요소 간 여백 추가 */
+}
+
+.event-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #c2185b;
+  margin-bottom: 0.8rem;
+}
+
+.event-flower-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.event-flower-meaning {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.event-flower-description {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  padding: 1rem;
+  background-color: #fdf6f9;
+  border-left: 4px solid #f06292;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+  max-width: 600px;  /* 기존 500px에서 증가 */
+  flex-grow: 1;       /* 남는 공간을 조금 더 활용 */
+}
+
+.event-flower-image {
+  width: 150px;   /* 기존 120px에서 증가 */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* BEST 3 섹션 */
+.best-section {
+  padding: 2rem;
+  background-color: #fff;
+  margin-bottom: 2rem;
+}
+
+.best-header {
+  margin-bottom: 2rem;
+}
+
+.best-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.best-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.best-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.best-item {
+  flex: 1;
+  min-width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.best-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.best-description {
+  padding: 1rem;
+}
+
+.like-text {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.rank-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff5722;
+  margin: 0 0.3rem;
+}
+
+.rank-text {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.combination-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.more-images {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.more-images-text {
+  cursor: pointer;
+  color: #4285f4;
+  font-weight: bold;
+}
+
+/* AI 꽃다발 섹션 */
+.ai-section {
+  position: relative;
+  padding: 3rem 2rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.flower-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.flower-type {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  color: #333;
+}
+
+.flower-type-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  object-fit: cover;
+}
+
+.flower-type-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.flower-type-desc {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.ai-cta {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.ai-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.start-button {
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  text-decoration: none; /* a 태그 밑줄 제거 */
+  display: inline-block; /* a 태그를 버튼처럼 보이게 */
+}
+
+.start-button:hover {
+  background-color: #e64a19;
+}
+
+/* 푸터 섹션 */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.login-text {
+  font-size: 16px;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.login-text:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
