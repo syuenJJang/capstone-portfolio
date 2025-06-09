@@ -647,7 +647,7 @@ app.delete('/delete-image/:imageId', async (req, res) => {
     }
 
     // AWS Lambda 호출
-    const lambdaResponse = await fetch('https://ekulip1jhd.execute-api.ap-northeast-2.amazonaws.com/default/delimage', {
+    const lambdaResponse = await fetch('your-apiurl', {
   method: 'DELETE',
   headers: {
     'Content-Type': 'application/json'
